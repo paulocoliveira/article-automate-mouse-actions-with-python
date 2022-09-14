@@ -39,7 +39,6 @@ actions.perform()
 
 #asserting that when hoving, "Hover" is shown below the image
 message = browser.find_element(By.XPATH, value="//div[@class='s__column m-15']//p")
-
 assert message.text == "Hover"
 
 #closing the browser
