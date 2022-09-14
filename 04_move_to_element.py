@@ -1,8 +1,5 @@
-import time
 from selenium.webdriver.common.by import By
-
 from selenium import webdriver
-
 from selenium.webdriver.common.action_chains import ActionChains
 
 #lambdatest setup and opening the desired website
@@ -32,8 +29,6 @@ browser = webdriver.Remote(
 browser.maximize_window()
 browser.get("https://www.lambdatest.com/selenium-playground/hover-demo")
 
-time.sleep(5)
-
 #locating the element
 first_image = browser.find_element(By.XPATH, value="//div[@class='s__column m-15']//img")
 
@@ -42,15 +37,10 @@ actions = ActionChains(browser)
 actions.move_to_element(first_image)
 actions.perform()
 
-time.sleep(5)
-
 #asserting that when hoving, "Hover" is shown below the image
 message = browser.find_element(By.XPATH, value="//div[@class='s__column m-15']//p")
 
 assert message.text == "Hover"
 
-time.sleep(5)
-
 #closing the browser
 browser.quit()
-

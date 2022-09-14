@@ -1,10 +1,6 @@
-import time
 from selenium.webdriver.common.by import By
-
 from selenium import webdriver
-
 from selenium.webdriver.common.keys import Keys
-
 from selenium.webdriver.common.action_chains import ActionChains
 
 #lambdatest setup and opening the desired website
@@ -34,8 +30,6 @@ browser = webdriver.Remote(
 browser.maximize_window()
 browser.get("https://www.lambdatest.com/selenium-playground/simple-form-demo")
 
-time.sleep(5)
-
 #locating the element
 message_field = browser.find_element(By.ID, value="user-message")
 button = browser.find_element(By.ID, value="showInput")
@@ -47,8 +41,5 @@ actions.click(on_element=message_field)
 actions.context_click()
 actions.perform()
 
-time.sleep(5)
-
 #closing the browser
 browser.quit()
-

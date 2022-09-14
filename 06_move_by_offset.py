@@ -1,8 +1,5 @@
-import time
 from selenium.webdriver.common.by import By
-
 from selenium import webdriver
-
 from selenium.webdriver.common.action_chains import ActionChains
 
 #lambdatest setup and opening the desired website
@@ -32,26 +29,10 @@ browser = webdriver.Remote(
 browser.maximize_window()
 browser.get("https://www.lambdatest.com/selenium-playground/hover-demo")
 
-time.sleep(5)
-
 # create action chain object
 actions = ActionChains(browser)
 actions.move_by_offset(617, 593)
 actions.perform()
 
-time.sleep(5)
-
 #closing the browser
 browser.quit()
-
-# import webdriver
-from selenium import webdriver
-   
-# import Action chains 
-from selenium.webdriver.common.action_chains import ActionChains
-   
-# create webdriver object
-driver = webdriver.Firefox()
-   
-# create action chain object
-action = ActionChains(driver)
