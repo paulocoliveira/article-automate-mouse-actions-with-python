@@ -7,23 +7,25 @@ username = "Your LambdaTest Username"
 accessToken = "Your LambdaTest Access Key"
 gridUrl = "hub.lambdatest.com/wd/hub"
  
-capabilities = {
-    'LT:Options' : {
-        "user" : "Your LambdaTest Username",
-        "accessKey" : "Your LambdaTest Access Key",
-        "build" : "your build name",
-        "name" : "your test name",
-        "platformName" : "Windows 11",
-    },
+lt_options = {
+    "user" : username,
+    "accessKey" : accessToken,
+    "build" : "your build name",
+    "name" : "your test name",
+    "platformName" : "Windows 11",
     "browserName" : "Chrome",
-    "browserVersion" : "103.0",
+    "browserVersion" : "latest",
+    "selenium_version": "latest"
 }
- 
+
+web_driver = webdriver.ChromeOptions()
+options = web_driver
+options.set_capability('LT:Options', lt_options)
+
 url = "https://"+username+":"+accessToken+"@"+gridUrl
- 
 browser = webdriver.Remote(
     command_executor=url,
-    desired_capabilities=capabilities
+    options=options
 )
 
 browser.maximize_window()
@@ -36,6 +38,9 @@ first_image = browser.find_element(By.XPATH, value="//div[@class='s__column m-15
 actions = ActionChains(browser)
 actions.move_to_element(first_image)
 actions.perform()
+
+from time import sleep
+sleep(10)
 
 #asserting that when hoving, "Hover" is shown below the image
 message = browser.find_element(By.XPATH, value="//div[@class='s__column m-15']//p")

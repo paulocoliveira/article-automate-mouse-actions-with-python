@@ -29,22 +29,24 @@ browser = webdriver.Remote(
 )
 
 browser.maximize_window()
-browser.get("https://www.lambdatest.com/selenium-playground/hover-demo")
+browser.get("https://www.lambdatest.com/selenium-playground/simple-form-demo")
 
 #locating the element
-first_image = browser.find_element(By.XPATH, value="//div[@class='s__column m-15']//img")
+message_field = browser.find_element(By.ID, value="user-message")
+button = browser.find_element(By.ID, value="showInput")
+your_message = browser.find_element(By.ID, value="message")
 
 # create action chain object
 actions = ActionChains(browser)
-actions.move_to_element_with_offset(first_image, 100, 200)
+actions.click(on_element=message_field)
+actions.send_keys("Hello!")
+actions.click_and_hold(button)
+actions.release()
 actions.perform()
 
-from time import sleep
-sleep(10)
-
-#asserting that when hoving, "Hover" is shown below the image
-message = browser.find_element(By.XPATH, value="//div[@class='s__column m-15']//p")
-assert message.text == "Hover"
+#asserting that the message presented is Hello!
+assert your_message.text == "Hello!"
 
 #closing the browser
 browser.quit()
+
